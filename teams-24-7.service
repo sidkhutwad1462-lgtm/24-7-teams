@@ -1,0 +1,18 @@
+[Unit]
+Description=Microsoft Teams 24/7 Availability Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=teams-bot
+WorkingDirectory=/opt/teams-bot
+EnvironmentFile=/opt/teams-bot/.env
+ExecStart=/opt/teams-bot/venv/bin/python /opt/teams-bot/teams_availability.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

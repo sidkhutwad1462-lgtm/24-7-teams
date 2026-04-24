@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  teams-bot:
+    build: .
+    container_name: teams-availability-bot
+    environment:
+      TEAMS_EMAIL: ${TEAMS_EMAIL}
+      TEAMS_PASSWORD: ${TEAMS_PASSWORD}
+      UPDATE_INTERVAL: ${UPDATE_INTERVAL:-60}
+      ACTIVITY_SIMULATION: ${ACTIVITY_SIMULATION:-true}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - ./logs:/app/logs
+    restart: always
+    networks:
+      - teams-network
+
+networks:
+  teams-network:
+    driver: bridge

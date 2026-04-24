@@ -1,0 +1,1 @@
+worker: python teams_availability.py
